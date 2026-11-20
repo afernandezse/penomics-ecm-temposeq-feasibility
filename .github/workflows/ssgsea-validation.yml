@@ -1,7 +1,6 @@
 name: ssgsea-synthetic-manual
 
-# Expensive Bioconductor dependency test. Run on demand in GitHub Actions.
-# The existing automatic coverage workflow remains unchanged.
+# On-demand integration check. The automatic coverage workflow is unchanged.
 on:
   workflow_dispatch:
 
@@ -12,6 +11,11 @@ jobs:
   ssgsea-integration:
     runs-on: ubuntu-22.04
     timeout-minutes: 60
+    env:
+      # Use the Bioconductor 3.18 mirror verified on the local R 4.3.3 setup.
+      # pkgcache/pak supports both environment variables.
+      R_BIOC_VERSION: '3.18'
+      R_BIOC_MIRROR: 'https://bioconductor.uib.no'
     steps:
       - uses: actions/checkout@v4
       - uses: r-lib/actions/setup-r@v2
@@ -20,10 +24,13 @@ jobs:
           use-public-rspm: true
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          # No DESCRIPTION file: this is a script repository, not an R package.
+          # Suppress the default 'deps::., any::sessioninfo'.
+          packages: ''
           extra-packages: |
             bioc::DESeq2
             bioc::GSVA
-          dependencies: 'hard'
+          dependencies: '"hard"'
       - name: Verify installed package versions
         shell: Rscript {0}
         run: |
