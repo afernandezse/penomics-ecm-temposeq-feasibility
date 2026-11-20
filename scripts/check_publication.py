@@ -11,10 +11,10 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED = {
     '.gitignore', 'LICENSE', 'README.md',
-    '.github/workflows/validate.yml',
+    '.github/workflows/validate.yml', '.github/workflows/ssgsea-validation.yml',
     'config/signatures.tsv', 'results/public_summary.csv',
     'scripts/common.R', 'scripts/coverage.R', 'scripts/normalize_ssgsea.R',
-    'scripts/check_publication.py', 'tests/test_coverage.R',
+    'scripts/check_publication.py', 'tests/test_coverage.R', 'tests/test_ssgsea.R',
     'examples/synthetic_panel.csv', 'examples/synthetic_sets.gmt',
     'examples/synthetic_probe_map.csv', 'examples/synthetic_counts.csv',
     'docs/PROVENANCE.md', 'docs/ANALYSIS_PLAN.md', 'docs/PUBLICATION_CHECKLIST.md'
@@ -25,7 +25,7 @@ LIMIT_BYTES = 150_000
 def files_for_review():
     if (ROOT / '.git').exists():
         run = subprocess.run(['git', '-C', str(ROOT), 'ls-files', '-z'],
-                             capture_output=True, check=True)
+                             stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
         return [Path(s.decode()) for s in run.stdout.split(b'\0') if s]
     return [p.relative_to(ROOT) for p in ROOT.rglob('*')
             if p.is_file() and '.git' not in p.relative_to(ROOT).parts and

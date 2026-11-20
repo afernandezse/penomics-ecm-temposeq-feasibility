@@ -88,6 +88,25 @@ For local real data use a CSV with `probe_id` as the first header and one sample
 
 **Important:** the synthetic demonstration checks workflow behavior, not reproducibility of the preliminary real-data coverage totals. Reproducing the latter requires the original licensed signatures and reference gene/probe mapping held by the laboratory.
 
+## Verification of the synthetic ssGSEA processing chain
+
+After installing `DESeq2` and `GSVA`, run:
+
+```bash
+Rscript tests/test_ssgsea.R
+```
+
+The test runs the synthetic workflow twice in `local_results/`, checks deterministic
+scores, positive DESeq2 size factors, expected signature coverage and provenance.
+For **GSVA 1.50.5**, it also compares scores against a recorded numeric reference
+obtained using R 4.3.3 / DESeq2 1.42.1. This is a *synthetic workflow regression
+check*, not a clinical or biological validation.
+
+For a separate, **manually triggered** cloud check, open GitHub **Actions** and
+select **ssgsea-synthetic-manual** → **Run workflow**. Dependency provisioning on
+GitHub-hosted runners uses external package services and may fail independently
+of the tested analysis. The original automatic coverage workflow is unchanged.
+
 ## Scope and limitations
 
 * **Technical coverage, not biological or clinical validation.** No differential expression, FGA association, response prediction, classifier, ICI signature validation, or functional result is reported here.
