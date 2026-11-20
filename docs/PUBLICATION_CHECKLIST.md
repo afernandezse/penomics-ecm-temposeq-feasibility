@@ -11,15 +11,16 @@
 - [ ] Do not upload the internal GMT, probe-level or gene-level matrices, patient-level scores, or sample metadata.
 - [ ] Verify the project reference and the funding status wording in the README.
 
-## Suggested publication flow
+## Suggested publication flow (order matters for Zenodo)
 
-1. Create a new GitHub repository named `penomics-ecm-temposeq-feasibility`, initially **Private** until the checklist is complete.
-2. Unpack this folder and commit its contents. Keep `.gitignore` from the first commit.
-3. Review the tracked file list (`git ls-files`) and the safety scan.
-4. Make the repository Public only after institutional approval and safety checks.
-5. Create an annotated release `v0.1.0` marked **technical feasibility only**.
-6. Optionally connect GitHub to Zenodo and archive the *tagged release* for a DOI. Verify that Zenodo does not accidentally include non-public data.
-7. Do not cite a DOI or assert a Zenodo record until an actual DOI has been minted.
+1. Confirm laboratory/institutional authorization to publish the original code and aggregate coverage summary; confirm named software contributors and copyright/license ownership. Review `CITATION.cff` and `LICENSE` accordingly.
+2. Audit *all tracked Git history*, current files, and existing GitHub Actions logs for potentially sensitive information. Use the separately supplied **ignored local-only** `local_private/audit_publication.py` and manually review any warnings. A `PASS` cannot establish legal publication rights or anonymity.
+3. Run the publication checker and synthetic R tests. Verify both GitHub Actions workflows are green for the intended release commit.
+4. Make the repository **public** only after author/rights/security review; GitHub makes past Git history and Actions logs available when changing visibility.
+5. **Connect GitHub to Zenodo and enable this repository before publishing a release**; the integration archives newly published GitHub releases, not mere tags. See https://help.zenodo.org/docs/github/enable-repository/ .
+6. Commit approved citation metadata and push. Create and publish GitHub Release **v0.1.0** (not merely a `git tag`); use release notes explicitly delimiting synthetic reproducibility vs biological validation.
+7. Check Zenodo created an archive, inspect its **software author metadata**, public files and version-specific DOI. If the deposit was not triggered, do not invent a DOI; resolve the integration or deposit separately.
+8. Insert the verified software citation/DOI in the scientific-technical AEI memorandum, never presenting this repository as validated patient-derived biology.
 
 ## Example commands
 

@@ -115,6 +115,12 @@ of the tested analysis. The original automatic coverage workflow is unchanged.
 * The planned primary biological contrast (continuous FGA vs the prespecified Reactome ECM ssGSEA score) is **a hypothesis**, not an observed association. NABA is a predefined **sensitivity analysis**, not a second primary test.
 * ssGSEA scores depend on sample processing, available gene universe, filtering, and software versions. For actual study analyses, versions and thresholds must be frozen and documented before looking at FGA associations.
 
+## Citation and reproducible release
+
+The repository includes [`CITATION.cff`](CITATION.cff) for GitHub's **Cite this repository** feature. The author field initially reflects the existing group attribution **PEN-OMICS contributors**; **confirm the approved named authors and institutional ownership before making the repository public or depositing it in Zenodo**. The first reviewed software release is intended to be **v0.1.0**; the actual Zenodo DOI must be added **only once a deposit exists**. Cite the *version-specific DOI* in the PEN-OMICS application when available.
+
+The successful synthetic GitHub Actions checks establish computational execution in separate environments, not clinical reproducibility or independent confirmation of the aggregate reference-panel coverage. No real sample-level measurements are distributed.
+
 ## Citation, references and rights
 
 The R/Python code authored for this repository is distributed under the MIT license. **This does not apply to MSigDB content, the original TempO-Seq matrices, third-party datasets, or clinical data.** Obtain and use upstream sets under the [MSigDB license](https://www.gsea-msigdb.org/gsea/msigdb_license_terms.jsp). Source pages: [Reactome ECM](https://www.gsea-msigdb.org/gsea/msigdb/human/geneset/REACTOME_EXTRACELLULAR_MATRIX_ORGANIZATION.html), [NABA Core Matrisome](https://www.gsea-msigdb.org/gsea/msigdb/human/geneset/NABA_CORE_MATRISOME.html). Software: [GSVA](https://bioconductor.org/packages/GSVA) and [DESeq2](https://bioconductor.org/packages/DESeq2). See [docs/PROVENANCE.md](docs/PROVENANCE.md).

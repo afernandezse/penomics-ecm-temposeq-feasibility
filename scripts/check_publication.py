@@ -10,7 +10,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED = {
-    '.gitignore', 'LICENSE', 'README.md',
+    '.gitignore', 'LICENSE', 'README.md', 'CITATION.cff',
     '.github/workflows/validate.yml', '.github/workflows/ssgsea-validation.yml',
     'config/signatures.tsv', 'results/public_summary.csv',
     'scripts/common.R', 'scripts/coverage.R', 'scripts/normalize_ssgsea.R',

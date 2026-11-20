@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite this repository and the archived release."
+title: "PEN-OMICS: ECM signatures in TempO-Seq WHT — technical feasibility workflow"
+type: software
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/afernandezse/penomics-ecm-temposeq-feasibility"
+url: "https://github.com/afernandezse/penomics-ecm-temposeq-feasibility"
+authors:
+  - family-names: "Fernández-Serra"
+    given-names: "Antonio"
+    affiliation: "Instituto Valenciano de Oncología"
+    orcid: "https://orcid.org/0000-0001-5281-0521"
+abstract: >-
+  Reproducible workflow for nominal ECM gene-set representation checks in a
+  TempO-Seq WHT reference export and synthetic DESeq2/GSVA-ssGSEA integration tests.
+  This is a technical feasibility study, not PSCC biological or clinical validation.
