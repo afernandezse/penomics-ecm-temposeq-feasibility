@@ -27,9 +27,12 @@ jobs:
           # No DESCRIPTION file: this is a script repository, not an R package.
           # Suppress the default 'deps::., any::sessioninfo'.
           packages: ''
+          # rsvd 2.0.0 (CRAN, 2026-11-02) requires R >= 4.4.
+          # An explicit CRAN archive pin keeps R 4.3.3 / Bioc 3.18 compatible.
           extra-packages: |
             bioc::DESeq2
             bioc::GSVA
+            rsvd=url::https://cran.r-project.org/src/contrib/Archive/rsvd/rsvd_1.0.5.tar.gz
           dependencies: '"hard"'
       - name: Verify installed package versions
         shell: Rscript {0}
@@ -37,6 +40,8 @@ jobs:
           cat('R:', as.character(getRversion()), '\n')
           cat('DESeq2:', as.character(packageVersion('DESeq2')), '\n')
           cat('GSVA:', as.character(packageVersion('GSVA')), '\n')
+          cat('rsvd:', as.character(packageVersion('rsvd')), '\n')
+          stopifnot(packageVersion('rsvd') == package_version('1.0.5'))
       - name: Synthetic ssGSEA integration test
         run: Rscript tests/test_ssgsea.R
       - name: Verify publication safety of tracked files
